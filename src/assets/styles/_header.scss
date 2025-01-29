@@ -1,0 +1,57 @@
+@use 'variables' as v;
+
+header {
+  background: v.$background-color;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: v.$spacing-sm v.$spacing-lg;
+  position: sticky;
+  top: 0;
+  z-index: v.$z-sticky;
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: v.$container-width;
+    margin: 0 auto;
+
+    .home-link {
+      color: v.$primary-color;
+      font-size: v.$font-size-lg;
+      font-weight: bold;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .library-link {
+      color: v.$text-color;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .search-container {
+      width: 300px;
+      
+      .search-input {
+        width: 100%;
+        padding: v.$spacing-sm v.$spacing-lg;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: v.$spacing-xs;
+        color: v.$text-color;
+        font-size: v.$font-size-base;
+        
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+        
+        &:focus {
+          outline: none;
+          background: rgba(255, 255, 255, 0.15);
+        }
+      }
+    }
+  }
+} 

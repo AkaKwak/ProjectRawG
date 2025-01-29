@@ -1,0 +1,53 @@
+@use '../variables' as v;
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: v.$spacing-lg;
+  margin: 0 auto;
+  max-width: v.$container-width;
+}
+
+.game-card {
+  background: v.$card-background;
+  border-radius: v.$border-radius;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  a {
+    text-decoration: none;
+    color: v.$text-color;
+    display: block;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .card-content {
+    padding: v.$spacing-md;
+
+    .game-title {
+      font-size: v.$font-size-lg;
+      margin-bottom: v.$spacing-sm;
+      color: v.$text-color;
+    }
+
+    .game-meta {
+      color: v.$text-secondary;
+      font-size: v.$font-size-sm;
+    }
+  }
+} 

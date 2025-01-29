@@ -1,0 +1,549 @@
+@use 'sass:color';
+@use 'variables' as v;
+@use 'header';
+@use 'components/home';
+@use 'components/game-card';
+@use 'components/loading-spinner';
+@use 'components/grid';
+@use 'components/platform-select';
+@use 'components/game-detail';
+@use 'base';
+@use 'components/page-list';
+
+// Reset et base
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: v.$background-color;
+  color: v.$text-color;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+// Layout principal
+.container {
+  max-width: v.$container-width;
+  margin: 0 auto;
+  padding: 0 v.$spacing-md;
+}
+
+// Page d'accueil
+.page-home {
+
+
+  h1 {
+    font-size: v.$font-size-xl * 1.5;
+    margin-bottom: v.$spacing-sm;
+    color: v.$primary-color;
+  }
+
+  .subtitle {
+    font-size: v.$font-size-lg;
+    color: v.$text-secondary;
+    margin-bottom: v.$spacing-xl;
+    max-width: 600px;
+  }
+}
+
+// Utilitaires
+.load-more-button {
+  display: block;
+  margin: v.$spacing-xl auto;
+  padding: v.$spacing-sm v.$spacing-xl;
+  background-color: v.$primary-color;
+  color: v.$text-color;
+  border: none;
+  border-radius: v.$button-border-radius;
+  font-size: v.$font-size-base;
+  cursor: pointer;
+  transition: opacity v.$transition-speed v.$transition-timing;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.error-message {
+  text-align: center;
+  padding: v.$spacing-xl;
+  
+  p {
+    margin-bottom: v.$spacing-md;
+    color: v.$text-secondary;
+  }
+
+  button {
+    padding: v.$spacing-sm v.$spacing-lg;
+    background-color: v.$primary-color;
+    color: v.$text-color;
+    border: none;
+    border-radius: v.$button-border-radius;
+    cursor: pointer;
+  }
+}
+
+// Filtres
+.filters {
+  max-width: 800px;
+  margin: v.$spacing-md auto;
+
+  select {
+    background: v.$input-background;
+    border: none;
+    color: v.$text-color;
+    padding: v.$spacing-sm v.$spacing-md;
+    border-radius: v.$input-border-radius;
+    width: 200px;
+    
+    option {
+      background: v.$card-background;
+    }
+  }
+}
+
+// Variables obligatoires
+$primary-color: #ff0000;      // Rouge plus vif
+$secondary-color: #a29bfe;
+$text-color: #ffffff;     // Texte blanc pour le thème sombre
+$link-color: #dc1818;     // Rouge pour les liens
+$link-hover-color: color.adjust($link-color, $lightness: 10%);
+$background-color: #1c1c1c;   // Noir plus profond
+$card-background: #2a2a2a;    // Gris plus foncé
+$secondary-text: #999999;     // Pour les textes secondaires
+$search-bg: #2a2a2a;         // Fond de la barre de recherche
+
+// Variables pour la recherche
+$search-height: 45px;
+$search-border-radius: 25px;
+$search-background: rgba(255, 255, 255, 0.1);
+
+// Tailles
+$mobile-width: 768px;
+$tablet-width: 1024px;
+$container-width: 1200px;
+$card-width: 300px;
+$spacing-unit: 1rem;
+
+// Typographie
+$font-primary: 'Roboto', sans-serif;
+$font-secondary: 'Poppins', sans-serif;
+$font-size-base: 16px;
+$font-size-h1: 2.5rem;
+$font-size-h2: 2rem;
+$font-size-h3: 1.5rem;
+
+// Variables pour les icônes
+$icon-size-sm: 16px;
+$icon-size-md: 24px;
+$icon-size-lg: 32px;
+
+// Mixins obligatoires
+@mixin mobile {
+  @media (max-width: $mobile-width) {
+    @content;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin card-shadow {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+}
+
+// Mixin pour les icônes
+@mixin icon-size($size) {
+  width: $size;
+  height: $size;
+}
+
+// Mixin pour l'effet de soulignement
+@mixin link-hover-effect {
+  position: relative;
+  text-decoration: none;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: currentColor;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+}
+
+// Header et Navigation
+header {
+  background: v.$background-color;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: v.$z-sticky;
+
+  nav {
+    max-width: v.$container-width;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      color: v.$text-color;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+
+      &.home-link {
+        color: v.$primary-color;
+      }
+    }
+  }
+}
+
+// Search et Filtres
+.search-container {
+  position: relative;
+  max-width: 800px;
+  margin: 2rem auto;
+  height: v.$search-height;
+  display: flex;
+  align-items: center;
+  background: v.$search-background;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0 15px;
+
+  .search-input-wrapper {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .search-icon {
+      width: 20px;
+      height: 20px;
+      fill: rgba(255, 255, 255, 0.5);
+      margin-right: 10px;
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      padding: 0;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+// Bouton "Show More"
+.load-more {
+  background: $primary-color;
+  color: $text-color;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 3px;
+  margin: 2rem auto;
+  display: block;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: color.adjust($primary-color, $lightness: -10%);
+  }
+}
+
+.page-detail {
+  padding: 20px;
+  
+  .loading {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: #666;
+  }
+
+  .game-info {
+    a:not(.external-link) {
+      color: $link-color;
+      @include link-hover-effect;
+      
+      &:hover {
+        color: $link-hover-color;
+      }
+    }
+
+    .external-link {
+      color: $secondary-color;
+      text-decoration: underline;
+      
+      &:hover {
+        color: color.adjust($secondary-color, $lightness: 10%);
+      }
+    }
+  }
+}
+
+// Application aux liens de navigation
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  
+  a {
+    text-decoration: none;
+    font-weight: 500;
+  }
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  fill: currentColor;
+  @include icon-size($icon-size-md);
+
+  &.icon-sm {
+    @include icon-size($icon-size-sm);
+  }
+
+  &.icon-lg {
+    @include icon-size($icon-size-lg);
+  }
+
+  &.icon-platform {
+    @include icon-size($icon-size-sm);
+    margin-right: 4px;
+  }
+}
+
+// Style spécifique pour les icônes de plateforme
+.platforms {
+  .icon {
+    opacity: 0.7;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+// Style pour les liens
+a {
+  &.internal-link {
+    color: $link-color;
+    @include link-hover-effect;
+    
+    &:hover {
+      color: $link-hover-color;
+    }
+  }
+
+  &.external-link {
+    color: $secondary-color;
+    text-decoration: underline;
+    
+    &:hover {
+      color: color.adjust($secondary-color, $lightness: 10%);
+    }
+  }
+}
+
+button, .button {
+  &:hover {
+    background: color.adjust($primary-color, $lightness: -10%);
+  }
+}
+
+// Animation de chargement
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+// Skeleton loading
+.skeleton {
+  background: $card-background;
+  border-radius: 5px;
+  overflow: hidden;
+
+  .skeleton-img {
+    height: 200px;
+    background: linear-gradient(
+      90deg,
+      $card-background 25%,
+      color.adjust($card-background, $lightness: 5%) 50%,
+      $card-background 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  .skeleton-content {
+    padding: 1rem;
+
+    .skeleton-title {
+      height: 24px;
+      width: 80%;
+      margin-bottom: 1rem;
+      background: linear-gradient(
+        90deg,
+        $card-background 25%,
+        color.adjust($card-background, $lightness: 5%) 50%,
+        $card-background 75%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 3px;
+    }
+
+    .skeleton-text {
+      height: 16px;
+      width: 60%;
+      background: linear-gradient(
+        90deg,
+        $card-background 25%,
+        color.adjust($card-background, $lightness: 5%) 50%,
+        $card-background 75%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 3px;
+    }
+  }
+}
+
+// Optimisations pour la performance
+img {
+  will-change: transform;
+}
+
+.game-card {
+  will-change: transform;
+}
+
+// Message d'erreur
+.error-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem;
+  
+  button {
+    margin-top: 1rem;
+    @extend .load-more;
+  }
+}
+
+// Style des icônes de plateforme
+.platform-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  margin: 2px;
+  text-decoration: none;
+  color: $text-color;
+  
+  .platform-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    margin-right: 6px;
+  }
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    
+    .platform-icon {
+      fill: $primary-color;
+    }
+  }
+}
+
+.platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 8px 0;
+}
+
+// Suggestions de recherche
+#search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: $card-background;
+  border-radius: 8px;
+  margin-top: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  overflow: hidden;
+
+  option {
+    padding: 10px 15px;
+    color: $text-color;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+// Responsive
+@include mobile {
+  .search-container {
+    margin: 1rem;
+    
+    button {
+      padding: 0 15px;
+      font-size: 0.8rem;
+    }
+  }
+}

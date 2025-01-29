@@ -1,0 +1,10 @@
+@use '../variables' as v;
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: v.$spacing-lg;
+  padding: v.$spacing-lg;
+  max-width: v.$container-width;
+  margin: 0 auto;
+} 

@@ -1,0 +1,67 @@
+// Colors
+$background-color: #1c1c1c;
+$primary-color: #ff0000;
+$text-color: #ffffff;
+$text-secondary: #999999;
+$card-background: #2a2a2a;
+$dark: #000000;
+$border-color: rgba(255, 255, 255, 0.1);
+
+// Layout
+$container-width: 1200px;
+$mobile: 768px;
+$tablet: 768px;
+$desktop: 992px;
+
+// Typography
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 24px;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// Z-index
+$z-sticky: 100;
+$z-dropdown: 1000;
+$z-modal: 1030;
+$z-popover: 1040;
+$z-tooltip: 1050;
+
+// Borders & Radius
+$border-radius: 8px;
+$button-border-radius: 4px;
+$card-border-radius: 8px;
+$search-border-radius: 25px;
+
+// Transitions
+$transition-speed: 0.3s;
+$transition-timing: ease;
+
+// Search
+$search-height: 45px;
+$search-background: rgba(255, 255, 255, 0.1);
+
+// Cards
+$card-width: 300px;
+$card-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+// Input
+$input-height: 40px;
+$input-border-radius: 4px;
+$input-background: rgba(255, 255, 255, 0.1);
+$input-border-color: rgba(255, 255, 255, 0.2);
+
+// Buttons
+$button-height: 40px;
+$button-padding: 0 16px;
+
+// Icons
+$icon-size-sm: 16px;
+$icon-size-md: 24px;
+$icon-size-lg: 32px; 

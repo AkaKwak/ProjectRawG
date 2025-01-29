@@ -1,0 +1,37 @@
+@use '../variables' as v;
+
+.platform-select {
+  position: relative;
+  
+  select {
+    appearance: none;
+    background: v.$card-background;
+    border: 1px solid v.$border-color;
+    border-radius: v.$spacing-xs;
+    color: v.$text-color;
+    font-size: v.$font-size-base;
+    padding: v.$spacing-sm v.$spacing-lg v.$spacing-sm v.$spacing-md;
+    width: 200px;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: v.$primary-color;
+    }
+  }
+
+  .platform-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: v.$spacing-sm;
+    vertical-align: middle;
+    fill: v.$text-secondary;
+  }
+}
+
+.platform-link {
+  &:focus-visible {
+    outline: 2px solid v.$primary-color;
+    outline-offset: 2px;
+  }
+} 

@@ -1,0 +1,113 @@
+@use '../variables' as v;
+
+.page-list {
+  padding: v.$spacing-lg;
+  max-width: v.$container-width;
+  margin: 0 auto;
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: v.$spacing-xl;
+
+    .filters {
+      display: flex;
+      gap: v.$spacing-md;
+
+      select {
+        background: v.$card-background;
+        color: v.$text-color;
+        border: none;
+        padding: v.$spacing-sm v.$spacing-lg;
+        border-radius: v.$spacing-xs;
+        font-size: v.$font-size-base;
+        cursor: pointer;
+        min-width: 200px;
+
+        &:focus {
+          outline: none;
+          border-color: v.$primary-color;
+        }
+
+        option {
+          background: v.$card-background;
+          color: v.$text-color;
+        }
+      }
+    }
+
+    .search-wrapper {
+      width: 300px;
+
+      .search-container {
+        margin: 0;
+      }
+    }
+  }
+
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: v.$spacing-lg;
+    
+    .game-card {
+      background: v.$card-background;
+      border-radius: v.$border-radius;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      a {
+        text-decoration: none;
+        color: v.$text-color;
+      }
+
+      .card-image {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .card-content {
+        padding: v.$spacing-md;
+
+        .game-title {
+          font-size: v.$font-size-lg;
+          margin-bottom: v.$spacing-sm;
+          color: v.$text-color;
+        }
+
+        .platforms {
+          display: flex;
+          gap: v.$spacing-sm;
+          
+          .platform-icon {
+            width: 20px;
+            height: 20px;
+            fill: v.$text-secondary;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: v.$mobile) {
+  .page-list {
+    padding: v.$spacing-md;
+    
+    .games-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+} 

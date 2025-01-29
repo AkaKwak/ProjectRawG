@@ -1,0 +1,149 @@
+@use '../variables' as v;
+@use 'sass:color';
+
+.page-home {
+  padding: v.$spacing-xl;
+  max-width: v.$container-width;
+  margin: 0 auto;
+  background: v.$background-color;
+  min-height: 100vh;
+
+  h1 {
+    font-size: v.$font-size-xl * 1.5;
+    color: v.$primary-color;
+    margin-bottom: v.$spacing-sm;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: v.$font-size-lg;
+    color: v.$text-secondary;
+    margin-bottom: v.$spacing-xl;
+    text-align: center;
+  }
+
+  .description {
+    color: v.$text-secondary;
+    line-height: 1.6;
+    margin-bottom: v.$spacing-lg;
+    max-width: 800px;
+  }
+
+  .platform-select {
+    select {
+      background: v.$card-background;
+      border: 1px solid v.$border-color;
+      color: v.$text-color;
+      padding: v.$spacing-sm v.$spacing-lg;
+      border-radius: v.$spacing-xs;
+      font-size: v.$font-size-base;
+      cursor: pointer;
+      min-width: 200px;
+
+      &:focus {
+        outline: none;
+        border-color: v.$primary-color;
+      }
+
+      option {
+        background: v.$card-background;
+        color: v.$text-color;
+      }
+    }
+  }
+
+  .home-intro {
+    margin-bottom: v.$spacing-xl;
+
+    h1 {
+      font-size: v.$font-size-xl * 1.5;
+      color: v.$text-color;
+      margin-bottom: v.$spacing-md;
+    }
+
+    .description {
+      color: v.$text-secondary;
+      line-height: 1.6;
+      margin-bottom: v.$spacing-lg;
+      max-width: 800px;
+    }
+
+    .platform-select {
+      select {
+        background: v.$card-background;
+        border: 1px solid v.$border-color;
+        color: v.$text-color;
+        padding: v.$spacing-sm v.$spacing-lg;
+        border-radius: v.$spacing-xs;
+        font-size: v.$font-size-base;
+        cursor: pointer;
+        min-width: 200px;
+
+        &:focus {
+          outline: none;
+          border-color: v.$primary-color;
+        }
+      }
+    }
+  }
+
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: v.$spacing-lg;
+  }
+
+  .hero-section {
+    min-height: 60vh;
+    background: linear-gradient(135deg, 
+      rgba(v.$primary-color, 0.1) 0%,
+      rgba(v.$background-color, 0.95) 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: v.$spacing-xl;
+    margin-bottom: v.$spacing-xl;
+    
+    h1 {
+      font-size: v.$font-size-xl * 2;
+      color: v.$primary-color;
+      text-align: center;
+    }
+  }
+
+  .featured-section {
+    margin-bottom: v.$spacing-xl;
+
+    h2 {
+      font-size: v.$font-size-xl;
+      color: v.$text-color;
+      margin-bottom: v.$spacing-md;
+    }
+  }
+
+  .featured-games {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: v.$spacing-lg;
+  }
+
+  .game-card {
+    background: v.$card-background;
+    border-radius: v.$border-radius;
+    overflow: hidden;
+    box-shadow: v.$card-shadow;
+    transition: transform v.$transition-speed v.$transition-timing;
+    border: 1px solid v.$border-color;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+}
+
+@media (max-width: v.$mobile) {
+  .page-home {
+    padding: v.$spacing-md;
+  }
+} 

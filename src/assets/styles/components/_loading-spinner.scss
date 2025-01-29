@@ -1,0 +1,32 @@
+@use '../variables' as v;
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: v.$spacing-xl;
+  min-height: 200px;
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid v.$border-color;
+    border-top-color: v.$primary-color;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-message {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} 
