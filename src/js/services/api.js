@@ -1,4 +1,3 @@
-const API_KEY = "26edafe90ed843deadef86b943d6525d";  // Temporairement ici pour le debug
 const BASE_URL = "https://api.rawg.io/api";
 
 const defaultParams = {
